@@ -21,31 +21,6 @@ def disableMotors(robotIP):
         h = {'Content-type': 'application/json'}
         response = requests.post(url, data=data, headers=h)
 
-def setSpeedMotors(robotIP,speed):
-    """
-    This function enables the motors of the robot.
-    """
-    listMotors = ["m1","m2","m3","m4","m5","m6"]
-    for i in range(len(listMotors)):
-        m=listMotors[i]
-        url = "http://"+robotIP+"/motors/"+m+"/registers/moving_speed/value.json"
-        data = str(speed)
-        h = {'Content-type': 'application/json'}
-        response = requests.post(url, data=data, headers=h)
-
-def moveMotors(robotIP,positions):
-    """
-    This function enables the motors of the robot.
-    """
-    listMotors = ["m1","m2","m3","m4","m5","m6"]
-    for i in range(len(listMotors)):
-        m=listMotors[i]
-        pos=positions[i]
-        url = "http://"+robotIP+"/motors/"+m+"/registers/goal_position/value.json"
-        data = str(pos)
-        h = {'Content-type': 'application/json'}
-        response = requests.post(url, data=data, headers=h)
-
 def getRobot(robotIP):
     """
     This function gets the robot information.
@@ -69,17 +44,6 @@ def motorGoto(robotIP,listPositions,duration):
     h = {'Content-type': 'application/json'}
     response = requests.post(url, data=str(data), headers=h)
     return response.json()
-
-def getFace(fc,img):
-    x=-1
-    y=-1
-    w=-1
-    h=-1
-    gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-    faces = fc.detectMultiScale(gray, 1.1, 4)
-    for (x, y, w, h) in faces:
-        break
-    return (x,y,w,h)
 
 if __name__ == "__main__":
     robotIP = "10.0.0.14:8080"
