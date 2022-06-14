@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 import dlib,requests,json,time
 import numpy as np
 
